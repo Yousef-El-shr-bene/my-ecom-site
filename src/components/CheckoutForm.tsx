@@ -75,7 +75,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onSubmit, shippingOptions, 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form onSubmit={handleSubmit} className="rounded-lg">
       <h3 className="text-xl font-bold mb-4">Shipping Information</h3>
       <div className="grid gap-4">
         <div className="space-y-2">
@@ -114,7 +114,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onSubmit, shippingOptions, 
               <div key={option.name} className="flex items-center space-x-2">
                 <RadioGroupItem value={option.name} id={option.name} />
                 <Label htmlFor={option.name}>
-                  <span className="font-medium">{option.name}</span> - ${option.fee.toFixed(2)}{' '}
+                  <span className="font-medium">{option.name}</span> ${option.fee.toFixed(2)}{' '}
                   <span className="text-sm text-gray-500">({option.description})</span>
                 </Label>
               </div>
@@ -128,7 +128,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onSubmit, shippingOptions, 
         <span>${cartTotal.toFixed(2)}</span>
       </div>
       <Button type="submit" className="w-full text-lg mt-4">
-        Place Order (COD)
+        Cash on Delivery
       </Button>
     </form>
   );

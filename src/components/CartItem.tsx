@@ -35,7 +35,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemoveIte
         <Button
           variant="outline"
           size="icon"
-          onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+          onClick={() => onUpdateQuantity(item.id,  item.quantity - 1)}
           disabled={item.quantity <= 1}
         >
           <Minus className="h-4 w-4" />
@@ -45,6 +45,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemoveIte
           variant="outline"
           size="icon"
           onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                    disabled={item.quantity >= 5}
         >
           <Plus className="h-4 w-4" />
         </Button>

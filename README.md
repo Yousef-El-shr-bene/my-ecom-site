@@ -1,54 +1,65 @@
-todo 
-Task: Build a Landing Page with Add to Cart & Cash on Delivery (COD) Checkout
+E-commerce Landing Page with Shopping Cart
+This project is a modern, responsive e-commerce landing page built using Next.js, React, and Tailwind CSS. It features a fully functional mock shopping cart and a simplified checkout process .
 
-Core Requirements
-	1.	Landing Page & Cart
+The application is designed to showcase core front-end development skills, including state management, component-based architecture, and responsive design.
 
-	•	Header with store name + cart item counter.
-	•	Hero section with product image, name, price, and Add to Cart button.
-	•	Product details/features section.
-	•	Cart sidebar or popup:
-	•	List items (name, price, quantity, subtotal).
-	•	Ability to change quantity and remove items.
-	•	Display total + Checkout button.
-	•	Checkout form (COD only):
-	•	Fields: Full Name, Phone Number, City/Region, Address, Notes (optional).
-	•	Shipping options: Standard vs Express (different shipping fees).
-	•	On submit: generate a fake order number and show a confirmation screen.
+Features
+Responsive Landing Page: A clean and modern user interface that adapts seamlessly to all screen sizes (mobile, tablet, and desktop).
 
-	2.	Logic (No real backend)
+Dynamic Shopping Cart: Add products to the cart, adjust quantities, and remove items dynamically. The cart data persists across sessions using localStorage.
 
-	•	Store cart data in localStorage.
-	•	Recalculate total dynamically (subtotal + shipping fee).
-	•	On “Place Order (COD)”:
-	•	Basic validation (e.g., name ≥ 3 chars, phone = digits only, 10–15 length).
-	•	Generate an order ID like ORD-<date><random>.
-	•	Clear the cart and show a confirmation with order summary.
+Checkout Flow: A simplified checkout form for "Cash on Delivery" orders with basic validation.
 
-	3.	Responsive Design
+Order Confirmation: A confirmation screen is displayed after a successful order, complete with a unique order ID and summary.
 
-	•	Mobile-first (works well at ≤375px), then scales for tablet and desktop.
+Modern Tech Stack: Utilizes professional-grade libraries and frameworks for a robust and scalable foundation.
 
-	4.	Accessibility
+Improved UI/UX: Integrated with shadcn/ui for high-quality, accessible components and lucide-react for a consistent icon set.
 
-	•	Proper field labels, logical tab order, sufficient color contrast.
+Technologies Used
+Next.js: React framework for server-side rendering and static site generation.
 
-	5.	Performance & Simplicity
+React: For building the user interface.
 
-	•	Plain HTML/CSS/JS or React/Vue (your choice).
-	•	No real backend required. Mock data (JSON file or array) is enough.
+TypeScript: To ensure code quality and prevent common errors.
 
-⸻
+Tailwind CSS: A utility-first CSS framework for rapid and responsive styling.
 
-Optional (Nice-to-Have)
-	•	Top notification bar (e.g., Free shipping above X amount).
-	•	Discount code (e.g., SAVE10 → 10% off).
-	•	Simple stock check (max quantity = 5 per item).
-	•	Log fake analytics events (e.g., console.log("AddToCart"), console.log("Purchase")).
+shadcn/ui: A collection of beautifully designed, accessible UI components.
 
-⸻
+lucide-react: A library of open-source icons.
+
+Getting Started
+Prerequisites
+Node.js: Make sure you have the latest LTS version of Node.js installed.
+
+npm: The Node Package Manager, which comes bundled with Node.js.
+
+Installation
+Clone the repository:
+
+git clone <your-repository-url>
+cd <your-project-folder>
+
+Install dependencies:
+
+npm install
+
+Set up shadcn/ui:
+This project uses shadcn/ui. If you're building from scratch, you'll need to initialize it and add the components.
+
+npx shadcn@latest init
+npx shadcn@latest add button dialog form label input radio-group scroll-area textarea
+
+Running the Project
+To run the development server, use the following command:
+
+npm run dev
+
+The application will be available at http://localhost:3000.
+
+
+Live Demo: https://my-ecom-site-ebon.vercel.app/
 
 Deliverables
-	•	GitHub repo + README with setup/run instructions.
-	•	At least 1 screenshot or GIF showing: Add to cart → Checkout → Confirmation.
-	•	If using React/Vite: npm install && npm run dev. If vanilla: open index.html.
+This repository contains all the necessary code files.

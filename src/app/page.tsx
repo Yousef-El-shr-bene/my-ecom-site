@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+
 interface Product {
   id: string;
   name: string;
@@ -79,6 +80,7 @@ const HomePage = () => {
   const [shippingFee, setShippingFee] = useState(SHIPPING_OPTIONS[0].fee);
   const [confirmationDetails, setConfirmationDetails] =
     useState<ConfirmationDetails | null>(null);
+  const [isCheckout, setIsCheckout] = useState(false);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -93,8 +95,8 @@ const HomePage = () => {
       (sum, item) => sum + (item.price * 100) * item.quantity,
       0
     ) / 100;
-    setCartTotal(newTotal + shippingFee);
-  }, [cartItems, shippingFee]);
+    setCartTotal(newTotal);
+  }, [cartItems]);
 
   const handleAddToCart = (product: Product) => {
     console.log("AddToCart event logged.");
@@ -103,7 +105,7 @@ const HomePage = () => {
       if (existingItem) {
         return prevItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity:  item.quantity >= 5 ? 5 : item.quantity + 1 }
             : item
         );
       }
@@ -130,7 +132,7 @@ const HomePage = () => {
     setConfirmationDetails({
       orderId,
       fullName: formData.fullName,
-      totalAmount: cartTotal,
+      totalAmount: cartTotal + shippingFee,
       items: cartItems.map((item) => ({
         name: item.name,
         quantity: item.quantity,
@@ -141,6 +143,7 @@ const HomePage = () => {
     });
     setCartItems([]);
     setIsCartOpen(false);
+    setIsCheckout(false);
   };
 
   const handleContinueShopping = () => {
@@ -159,11 +162,11 @@ const HomePage = () => {
         <section className="mb-12">
           <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-8 md:p-12 rounded-2xl shadow-xl flex flex-col md:flex-row items-center justify-between">
             <div className="text-center md:text-left mb-6 md:mb-0">
-              <h2 className="text-4xl md:text-6xl font-extrabold leading-tight">Wireless Headphones</h2>
+              <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mr-3">Wireless Headphones</h2>
               <p className="text-lg md:text-xl mt-2 max-w-lg mx-auto md:mx-0">
                 Enjoy a unique audio experience with noise cancellation and incredible battery life.
               </p>
-              <div className="mt-6 flex justify-center md:justify-start items-center space-x-4 space-x-reverse">
+              <div className="mt-6 flex justify-around md:justify-around items-center space-x-4 space-x-reverse shadow-lg rounded-2xl p-4 m-4 border-2  ">
                 <span className="text-3xl font-bold">$99.99</span>
                 <Button onClick={() => handleAddToCart(PRODUCTS[1])} className="bg-white text-blue-600 hover:bg-gray-100 transition-colors duration-200 shadow-md">
                   <ShoppingBag className="w-5 h-5 ml-2" />
@@ -171,7 +174,7 @@ const HomePage = () => {
                 </Button>
               </div>
             </div>
-            <Image width={20} height={20} src="https://placehold.co/400x400/FFFFFF/222831/png?text=Hero+Image" alt="Hero Product" className="w-48 h-48 md:w-64 md:h-64 object-contain" />
+            <Image width={200} height={200} src="https://placehold.co/400x400/FFFFFF/222831/png?text=Hero+Image" alt="Hero Product" className="w-48 h-48 md:w-64 md:h-64 object-contain" />
           </div>
         </section>
 
@@ -187,10 +190,9 @@ const HomePage = () => {
 
       <Dialog open={isCartOpen} onOpenChange={setIsCartOpen}>
         <DialogContent
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col w-[90vw] max-w-md h-[85vh] rounded-lg p-0"
-        >
-          <DialogHeader className="pt-4 pl-6">
-            <DialogTitle>Review your items and proceed to checkout.</DialogTitle>
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col w-[90vw] max-w-md h-[85vh] rounded-lg p-0">
+          <DialogHeader className="p-2 pb-1 flex justify-center items-center">
+            <DialogTitle></DialogTitle>
           </DialogHeader>
           <CartSidebar
             onClose={() => setIsCartOpen(false)}
@@ -201,6 +203,9 @@ const HomePage = () => {
             shippingOptions={SHIPPING_OPTIONS}
             onShippingChange={setShippingFee}
             onPlaceOrder={handlePlaceOrder}
+            isCheckout={isCheckout}
+            setIsCheckout={setIsCheckout}
+            shippingFee={shippingFee}
           />
         </DialogContent>
       </Dialog>

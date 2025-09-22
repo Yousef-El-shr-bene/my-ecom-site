@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+"use client";
+
+import React from 'react';
 import CartItem from './CartItem';
 import CheckoutForm from './CheckoutForm';
 import { Button } from '@/components/ui/button';
@@ -22,19 +24,23 @@ interface CartSidebarProps {
   shippingOptions: { name: string; fee: number; description: string; }[];
   onShippingChange: (fee: number) => void;
   onPlaceOrder: (formData : { fullName: string; address: string; shippingMethod: string; }) => void;
+  isCheckout: boolean;
+  setIsCheckout: React.Dispatch<React.SetStateAction<boolean>>;
+  shippingFee: number;
 }
 
 const CartSidebar: React.FC<CartSidebarProps> = ({
-  onClose,
   cartItems,
   onUpdateQuantity,
   onRemoveItem,
   cartTotal,
   shippingOptions,
   onShippingChange,
-  onPlaceOrder
+  onPlaceOrder,
+  isCheckout,
+  setIsCheckout,
+  shippingFee,
 }) => {
-  const [isCheckout, setIsCheckout] = useState(false);
 
   const handleCheckoutClick = () => {
     if (cartItems.length > 0) {
@@ -47,15 +53,17 @@ const CartSidebar: React.FC<CartSidebarProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-white p-4 md:p-6">
+    <div className="flex flex-col h-full bg-white p-4 md:p-6 rounded-lg shadow-lg w-full">
       {/* Button for navigating back to the cart or closing the sidebar */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
           {isCheckout ? 'Checkout' : 'Shopping Cart'}
         </h2>
-        <Button variant="ghost" size="icon" onClick={isCheckout ? handleBackToCart : onClose} className={`${!isCheckout && "hidden"}`} >
-        <ArrowLeft className="h-6 w-6" /> 
-        </Button>
+        {isCheckout && (
+          <Button variant="ghost" size="icon" onClick={handleBackToCart}>
+            <ArrowLeft className="h-6 w-6" /> 
+          </Button>
+        )}
       </div>
 
       {/* Main content area for cart items and checkout form */}
@@ -80,7 +88,7 @@ const CartSidebar: React.FC<CartSidebarProps> = ({
             onSubmit={onPlaceOrder}
             shippingOptions={shippingOptions}
             onShippingChange={onShippingChange}
-            cartTotal={cartTotal}
+            cartTotal={cartTotal + shippingFee}
           />
         )}
       </ScrollArea>
