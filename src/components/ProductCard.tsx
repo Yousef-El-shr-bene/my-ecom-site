@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ShoppingBag } from 'lucide-react';
-
+import Image from 'next/image';
 interface Product {
   id: string;
   name: string;
@@ -19,7 +19,9 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
     <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col items-center p-6 text-center h-full">
-      <img
+      <Image
+      width={200}
+       height={200}
         src={product.imageUrl}
         alt={product.name}
         className="w-full h-auto max-h-48 object-contain mb-4 rounded-lg"

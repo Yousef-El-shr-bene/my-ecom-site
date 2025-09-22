@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Minus, Plus, Trash2 } from 'lucide-react';
-
+import Image from 'next/image';
 interface CartItemProps {
   item: {
     id: string;
@@ -18,7 +18,9 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemoveIte
   return (
     <div className="flex items-center justify-between border-b border-gray-200 py-4 last:border-b-0">
       <div className="flex items-center gap-4 flex-1">
-        <img
+        <Image
+        width={200}
+         height={200}
           src={item.imageUrl}
           alt={item.name}
           className="w-16 h-16 object-contain rounded-md"

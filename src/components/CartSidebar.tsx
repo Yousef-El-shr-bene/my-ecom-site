@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CartItem from './CartItem';
 import CheckoutForm from './CheckoutForm';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, X } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface CartProduct {
@@ -21,7 +21,7 @@ interface CartSidebarProps {
   cartTotal: number;
   shippingOptions: { name: string; fee: number; description: string; }[];
   onShippingChange: (fee: number) => void;
-  onPlaceOrder: (formData: any) => void;
+  onPlaceOrder: (formData : { fullName: string; address: string; shippingMethod: string; }) => void;
 }
 
 const CartSidebar: React.FC<CartSidebarProps> = ({

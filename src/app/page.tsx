@@ -5,10 +5,10 @@ import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import CartSidebar from "@/components/CartSidebar";
 import ConfirmationScreen from "@/components/ConfirmationScreen";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import Image from "next/image";
 interface Product {
   id: string;
   name: string;
@@ -124,7 +124,7 @@ const HomePage = () => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  const handlePlaceOrder = (formData: any) => {
+  const handlePlaceOrder = (formData: { fullName: string; address: string; shippingMethod: string; }) => {
     console.log("Purchase event logged.");
     const orderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     setConfirmationDetails({
@@ -171,7 +171,7 @@ const HomePage = () => {
                 </Button>
               </div>
             </div>
-            <img src="https://placehold.co/400x400/FFFFFF/222831/png?text=Hero+Image" alt="Hero Product" className="w-48 h-48 md:w-64 md:h-64 object-contain" />
+            <Image width={20} height={20} src="https://placehold.co/400x400/FFFFFF/222831/png?text=Hero+Image" alt="Hero Product" className="w-48 h-48 md:w-64 md:h-64 object-contain" />
           </div>
         </section>
 
