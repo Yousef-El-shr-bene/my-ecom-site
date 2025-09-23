@@ -16,7 +16,7 @@ The application aims to demonstrate core front-end development skills, including
 
 The following images demonstrate the complete application flow, from adding products to the cart, through the checkout process, to the final order confirmation screen.
 
-<img src="./public/Capture2.PNG" alt="E-commerce landing page" width="300" loading="lazy"/> <img src="./public/Capture3.PNG" alt="Shopping cart dialog" width="300" loading="lazy"/> <img src="./public/Capture4.PNG" alt="Checkout form dialog" width="300" loading="lazy"/>
+<img src="./public/Capture5.PNG" alt="E-commerce landing page" width="300" loading="lazy"/> <img src="./public/Capture3.PNG" alt="Shopping cart dialog" width="300" loading="lazy"/> <img src="./public/Capture4.PNG" alt="Checkout form dialog" width="300" loading="lazy"/>
 
 ## Technologies Used
 
