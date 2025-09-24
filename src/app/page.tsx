@@ -118,7 +118,7 @@ const HomePage = () => {
     setCartItems((prevItems) =>
       prevItems
         .map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item))
-        .filter((item) => item.quantity > 0 && item.quantity < 5)
+        .filter((item) => item.quantity > 0 && item.quantity < 6)
     );
   };
 
